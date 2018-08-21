@@ -185,7 +185,7 @@ app.layout = html.Div([
 
                       config={
                       'displayModeBar': False,
-                      'scrollZoom': True
+                      'scrollZoom': False
                       } ,
                       figure=FIGURE
             ),
