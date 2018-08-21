@@ -94,7 +94,7 @@ def scatter_plot_3d(
         #margin = dict( r=20, t=0, l=0, b=0 ),
         showlegend = False,
         xaxis = {'type': 'log', 'title': 'inter-spike interval (s)'},
-        yaxis = {'type': 'linear', 'title': 'extracellular spike amplitude (uV)'},
+        yaxis = {'type': 'linear', 'title': 'extracellular spike amplitude (&mu;V)'},
         
         scene = dict(
             xaxis = axis_template_2d( xlabel ),
@@ -200,7 +200,7 @@ app.layout = html.Div([
         #html.Table( make_dash_table( [STARTING_DRUG] ), id='table-element' )
         #html.H1('Hello Dash')
         html.P("Many neurons fire a sequence of spikes, known as a burst, in response to a stimulus. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."),
-        html.P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100uV (vert., top/bottom)"),
+        html.P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"),
         html.P("Right: Extracellular spike amplitude, colored by spike number within a burst. Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Hovering over a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"),
         html.P("Credit: Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording capability, by BD Allen, C Moore-Kochlacs, JG Bernstein, et al., 2018. J Neurophys: https://www.physiology.org/doi/10.1152/jn.00650.2017")
     ])
