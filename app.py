@@ -10,7 +10,7 @@ import numpy
 
 app = dash.Dash('burst-firing')
 server = app.server
-df = pd.read_csv('bursts6.csv')
+df = pd.read_csv('bursts.csv')
 
 if 'DYNO' in os.environ:
     app.scripts.append_script({
@@ -21,9 +21,10 @@ if 'DYNO' in os.environ:
 BACKGROUND = 'rgb(230, 230, 230)'
 COLORSCALE = [[0, "rgb(128,128,128)"], [0.10, "rgb(255,0,0)"], [0.25, "rgb(0,255,0)"], [0.45, "rgb(255,0,255)"], [0.65, "rgb(255,255,0)"], [0.85, "rgb(0,0,255)"], [1, "rgb(255,128,0)"]]
 
+
 def scatter_plot_3d(
 		#hoverinfo = 'skip',
-        x = df['isi'],#numpy.log10(df['isi']),
+        x = df['isi']*1000,#numpy.log10(df['isi']),
         y = df['amp'],
         z = df['sample'],
         size = df['SIZE'],
@@ -93,7 +94,7 @@ def scatter_plot_3d(
         hovermode = 'closest',
         #margin = dict( r=20, t=0, l=0, b=0 ),
         showlegend = False,
-        xaxis = {'type': 'log', 'title': 'inter-spike interval (s)'},
+        xaxis = {'type': 'log', 'title': 'inter-spike interval (ms)'},
         yaxis = {'type': 'linear', 'title': 'extracellular spike amplitude (&mu;V)'},
         
         scene = dict(
@@ -123,9 +124,7 @@ STARTING_IMG = 4591
 SPIKE_IMG = df.loc[df['sample'] == STARTING_IMG]['PIC'].iloc[0]
 
 
-
-
-
+markdown_text = "Credit: Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording capability, by BD Allen, C Moore-Kochlacs, JG Bernstein, et al., 2018. J Neurophys: [Paper](https://www.physiology.org/doi/10.1152/jn.00650.2017). [Python source code](https://github.com/ewokdanceparty/burstWeb). [Matlab source code for other paper analyses](https://github.com/ewokdanceparty/spikeval/tree/devel)."
 app.layout = html.Div([
     # Row 1: Header and Intro text
 
@@ -202,10 +201,19 @@ app.layout = html.Div([
         html.P("Many neurons fire a sequence of spikes, known as a burst, in response to a stimulus. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."),
         html.P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"),
         html.P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Hovering over a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"),
-        html.P("Credit: Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording capability, by BD Allen, C Moore-Kochlacs, JG Bernstein, et al., 2018. J Neurophys: https://www.physiology.org/doi/10.1152/jn.00650.2017")
-    ])
+               
+        ]),
 
-], className='container')
+    dcc.Markdown(children=markdown_text)
+    ],
+    className='container')
+
+
+
+#
+
+
+
 
 def dfRowFromHover( hoverData ):
     ''' Returns row for hover point as a Pandas Series '''
@@ -247,4 +255,4 @@ for css in external_css:
 
 if __name__ == '__main__':
     app.run_server(debug=False)
-    #app.run_server(8015)
+    #app.run_server(8016)
