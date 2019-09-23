@@ -7,7 +7,6 @@ This is a web-based interactive visualization of burst spiking, as sensed intra-
 It uses Plotly Dash, and this code was initially based off of the "Drug Discovery Demo" from Plotly
 Dash.
 
-Paper citation: Allen, B.D., Moore-Kochlacs, C., Bernstein, J.G., Kinney, J.P., Scholvin, J., Seoane, L.F., Chronopou-
-los, C., Lamantia, C., Kodandaramaiah, S.B., Tegmark, M., and Boyden, E.S. (2018, accepted).
+Paper citation: Allen, B.D., Moore-Kochlacs, C., Bernstein, J.G., Kinney, J.P., Scholvin, J., Seoane, L.F., Chronopoulos, C., Lamantia, C., Kodandaramaiah, S.B., Tegmark, M., and Boyden, E.S. (2018).
 Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording
-capability. J Neurophysiol.
+capability. J Neurophysiol. https://doi.org/10.1152/jn.00650.2017

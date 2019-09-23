@@ -137,7 +137,7 @@ STARTING_IMG = 4591
 SPIKE_IMG = df.loc[df['sample'] == STARTING_IMG]['PIC'].iloc[0]
 
 
-markdown_text = "Credit: Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording capability, by BD Allen, C Moore-Kochlacs, JG Bernstein, et al., 2018. J Neurophys: [Paper](https://www.physiology.org/doi/10.1152/jn.00650.2017). [Python source code](https://github.com/ewokdanceparty/burstWeb). [Matlab source code for other paper analyses](https://github.com/ewokdanceparty/spikeval/tree/devel)."
+markdown_text = "Credit: Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording capability, by BD Allen, C Moore-Kochlacs, JG Bernstein, et al., 2018. J Neurophys: [Paper](https://doi.org/10.1152/jn.00650.2017). [Python source code](https://github.com/ewokdanceparty/burstWeb). [Matlab source code for other paper analyses](https://github.com/ewokdanceparty/spikeval/tree/devel)."
 app.layout = html.Div([
     # Row 1: Header and Intro text
 
@@ -267,5 +267,5 @@ for css in external_css:
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
-    #app.run_server(8016)
+    #app.run_server(debug=False)
+    app.run_server(8001)
