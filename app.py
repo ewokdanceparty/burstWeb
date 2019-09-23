@@ -3,8 +3,8 @@ This is a web-based interactive visualization of burst spiking, as sensed intra-
 It uses Plotly Dash, and this code was initially based off of the "Drug Discovery Demo" from Plotly
 Dash.
 
-Paper citation: Allen, B.D., Moore-Kochlacs, C., Bernstein, J.G., Kinney, J.P., Scholvin, J., Seoane, L.F., Chronopou-
-los, C., Lamantia, C., Kodandaramaiah, S.B., Tegmark, M., and Boyden, E.S. (2018, accepted).
+Paper citation: Allen, B.D., Moore-Kochlacs, C., Bernstein, J.G., Kinney, J.P., Scholvin, J., Seoane, L.F., Chronopoulos, 
+C., Lamantia, C., Kodandaramaiah, S.B., Tegmark, M., and Boyden, E.S. (2018).
 Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording
 capability. J Neurophysiol.
 
@@ -43,24 +43,19 @@ def scatter_plot_3d(
         size = df['SIZE'],
         color = df['COLOR'],
         pic = df['PIC'],
-        #size = df['MW'],
-        #color = df['MW'],
         xlabel = 'isi',
         ylabel = 'amp',
         zlabel = 'sample',
         plot_type = 'scatter',
         markers = [] ):
-        #):
         
     def axis_template_3d( title):#, type='linear' ):
         return dict(
             showbackground = True,
             backgroundcolor = BACKGROUND,
             gridcolor = 'rgb(255, 255, 255)',
-            #gridcolor = 'rgb(0, 0, 0)',
             title = title,
             type = type,
-            #zerolinecolor = 'rgb(255, 255, 255)'
             zerolinecolor = 'rgb(0, 0, 0)'
         )
         
@@ -68,19 +63,12 @@ def scatter_plot_3d(
         return dict(
             xgap = 10, ygap = 10,
             backgroundcolor = BACKGROUND,
-            #gridcolor = 'rgb(255, 255, 255)',
             gridcolor = 'rgb(0, 0, 0)',
             title = title,
             zerolinecolor = 'rgb(255, 255, 255)',
             color = '#444'
         )
-    '''
-    def blackout_axis( axis ):
-        axis['showgrid'] = True#False
-        axis['zeroline'] = False
-        axis['color']  = 'white'
-        return axis
-    '''
+
     data = [ dict(
         x = x,
         y = y,
@@ -88,7 +76,6 @@ def scatter_plot_3d(
         mode = 'markers',
         marker = dict(
                 colorscale = COLORSCALE,
-                #colorbar = dict( title = "Spike<br>Number" ),
                 line = dict( color = '#444' ),
                 reversescale = False,
                 sizeref = 45,
@@ -97,7 +84,7 @@ def scatter_plot_3d(
                 size = size,
                 color = color,
             ),
-        text = pic, #df['sample'],
+        text = pic, 
         type = plot_type,
         ur = pic
     ) ]
@@ -105,7 +92,6 @@ def scatter_plot_3d(
     layout = dict(
         font = dict( family = 'Raleway' ),
         hovermode = 'closest',
-        #margin = dict( r=20, t=0, l=0, b=0 ),
         showlegend = False,
         xaxis = {'type': 'log', 'title': 'inter-spike interval (ms)'},
         yaxis = {'type': 'linear', 'title': 'extracellular spike amplitude (&mu;V)'},
@@ -113,15 +99,7 @@ def scatter_plot_3d(
         scene = dict(
             xaxis = axis_template_2d( xlabel ),
             yaxis = axis_template_2d( ylabel ),
-            #zaxis = axis_template_3d( zlabel, 'log' ),
-            #camera = dict(
-            #    up=dict(x=0, y=0, z=1),
-            #   center=dict(x=0, y=0, z=0),
-            #    eye=dict(x=0.08, y=2.2, z=0.08)
-                #eye=dict(x=0, y=0, z=0)
-            #)
-        
-        )
+         )
 
     )
 
@@ -142,15 +120,6 @@ app.layout = html.Div([
     # Row 1: Header and Intro text
 
     html.Div([
-        #html.Img(src="http://web.media.mit.edu/~bdallen/willow.png",#"http://scalablephysiology.org/images/probe.png",
-        #        style={
-        #            'height': '100px',
-        #            'float': 'right',
-        #            'position': 'relative',
-        #            'bottom': '40px',
-        #            'left': '50px'
-        #        },
-        #        ),
         html.H2('Burst firing: intra- and extracellular properties',
                 style={
                     'position': 'relative',
@@ -165,17 +134,7 @@ app.layout = html.Div([
     ], className='row twelve columns', style={'position': 'relative', 'right': '15px'}),
     
     html.Div([
-        html.Div([
-            #html.Div([
-                #html.P('HOVER over a drug in the graph to the right to see its structure to the left.'),
-                #html.P('SELECT a drug in the dropdown to add it to the drug candidates at the bottom.')
-            #], style={'margin-left': '10px'}),
-            
-            #dcc.Dropdown(id='chem_dropdown',
-            #            multi=True,
-            #            value=[ STARTING_DRUG ],
-            #            options=[{'label': i, 'value': i} for i in df['COLOR'].tolist()]),
-            ], className='twelve columns' )
+        html.Div([], className='twelve columns' )
 
     ], className='row' ),
 
@@ -183,13 +142,10 @@ app.layout = html.Div([
 
     html.Div([
     	html.Div([
-
             html.Img(id='spike_img', src=SPIKE_IMG, width='300px', height='400px'),
-            #html.Br(),
 
         ], 
 		className='three columns', style=dict(marginTop='100px') ),
-        #className='three columns', style=dict(height='400px', marginTop='100px') ),
     	html.Div([
             dcc.Graph(id='clickable-graph',
                       style=dict(width='800px', height='600px'),
@@ -209,8 +165,6 @@ app.layout = html.Div([
     ], className='row' ),
 
     html.Div([
-        #html.Table( make_dash_table( [STARTING_DRUG] ), id='table-element' )
-        #html.H1('Hello Dash')
         html.P("Many neurons fire a sequence of spikes, known as a burst, in response to a stimulus. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."),
         html.P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"),
         html.P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Hovering over a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"),
@@ -235,13 +189,8 @@ def dfRowFromHover( hoverData ):
             firstPoint = hoverData['points'][0]
             if 'pointNumber' in firstPoint:
                 point_number = firstPoint['pointNumber']
-                #return point_number
-                #return df.loc[df['sample'] == 5827]['PIC'].iloc[0]
                 spike_name = str(FIGURE['data'][0]['text'][point_number]).strip()
-                #print(molecule_name)
-                #molecule_name
                 return spike_name
-                #return df.loc[df['NAME'] == molecule_name]
     return pd.Series()
 
 
@@ -250,8 +199,7 @@ def dfRowFromHover( hoverData ):
     [Input('clickable-graph', 'hoverData')])
 def display_image(hoverData):
     row = dfRowFromHover(hoverData)
-    #print(row)
-    img_src = row#"http://scalablephysiology.org/images/fiber.png"#5827#row['PIC'].iloc[0]
+    img_src = row
     return img_src
 
 
