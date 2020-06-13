@@ -22,6 +22,7 @@ import os
 import numpy
 
 app = dash.Dash('burst-firing')
+app.title = 'Ground truth neurotechnology'
 server = app.server
 df = pd.read_csv('bursts.csv')
 
@@ -215,5 +216,5 @@ for css in external_css:
 
 
 if __name__ == '__main__':
-    #app.run_server(debug=False)
-    app.run_server(8001)
+    app.run_server(debug=False)
+    #app.run_server(8001)
