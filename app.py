@@ -164,7 +164,7 @@ app.layout = html.Div(
                  className='row'),
         html.Div([
             html.
-            P("Many neurons fire a sequence of spikes, known as a burst, in response to a stimulus. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
               ),
             html.
             P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
@@ -212,5 +212,5 @@ for css in external_css:
     app.css.append_css({"external_url": css})
 
 if __name__ == '__main__':
-    #app.run_server(debug=False)
-    app.run_server(8001)
+    app.run_server(debug=False)
+    #app.run_server(8001)
