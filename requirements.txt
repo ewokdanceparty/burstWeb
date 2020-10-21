@@ -18,7 +18,6 @@ Flask-Compress==1.4.0
 Flask-Cors==3.0.6
 gast==0.2.0
 gunicorn==19.9.0
-h5py==2.8.0
 holoviews==1.10.5
 html5lib==0.9999999
 idna==2.7
@@ -46,7 +45,6 @@ mistune==0.8.3
 nbconvert==5.3.1
 nbformat==4.4.0
 nose==1.3.7
-notebook==5.7.8
 numpy==1.14.5
 packaging==17.1
 pandas==0.23.1
@@ -61,7 +59,6 @@ prompt-toolkit==1.0.15
 protobuf==3.6.0
 ptyprocess==0.5.2
 pygal==2.4.0
-pygame==1.9.4.dev0
 Pygments==2.2.0
 pyparsing==2.2.0
 python-dateutil==2.7.3
