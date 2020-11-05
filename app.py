@@ -144,7 +144,7 @@ app.layout = html.Div(
                      style=dict(marginTop='100px')),
             html.Div([
                 dcc.Graph(id='clickable-graph',
-                          style=dict(width='800px', height='600px'),
+                          style=dict(width='600px', height='600px'),
                           hoverData=dict(points=[dict(pointNumber=0)]),
                           config={
                               'displayModeBar': False,
