@@ -20,7 +20,8 @@ from flask_cors import CORS
 import os
 import numpy
 
-app = dash.Dash('burst-firing')
+#app = dash.Dash('burst-firing')
+app = dash.Dash(__name__)
 app.title = 'Ground truth neurotechnology'
 server = app.server
 df = pd.read_csv('bursts.csv')
@@ -82,7 +83,7 @@ def scatter_plot_3d(
              ur=pic)
     ]
 
-    layout = dict(font=dict(family='Raleway'),
+    layout = dict(font=dict(family='Helvetica'),
                   hovermode='closest',
                   showlegend=False,
                   xaxis={
@@ -120,8 +121,8 @@ app.layout = html.Div(
                     style={
                         'position': 'relative',
                         'top': '0px',
-                        'left': '10px',
-                        'font-family': 'Dosis',
+                        'left': '50px',
+                        'font-family': 'Helvetica',
                         'display': 'inline',
                         'font-size': '6.0rem',
                         'color': '#4D637F'
@@ -168,8 +169,8 @@ app.layout = html.Div(
             html.
             P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Tapping a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
               ),
-        ]),
-        dcc.Markdown(children=markdown_text)
+        ], style={'position': 'relative', 'left': '40px', 'width': '800px'}),
+        dcc.Markdown(children=markdown_text, style={'position': 'relative', 'left': '40px', 'width': '800px'})
     ],
     className='container')
 
@@ -195,17 +196,6 @@ def display_image(clickData):
     row = dfRowFromHover(clickData)
     img_src = row
     return img_src
-
-
-external_css = [
-    "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
-    "//fonts.googleapis.com/css?family=Dosis:400,300,600",
-    "//fonts.googleapis.com/css?family=Dosis:Medium",
-    "https://cdn.rawgit.com/plotly/dash-app-stylesheets/0e463810ed36927caf20372b6411690692f94819/dash-drug-discovery-demo-stylesheet.css"
-]
-
-for css in external_css:
-    app.css.append_css({"external_url": css})
 
 if __name__ == '__main__':
     app.run_server(debug=False)
