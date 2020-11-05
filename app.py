@@ -147,11 +147,11 @@ app.layout = html.Div(
             html.Div([
                 dcc.Graph(id='clickable-graph',
                           style=dict(width='600px', height='600px'),
-                          hoverData=dict(points=[dict(pointNumber=0)]),
                           config={
                               'displayModeBar': False,
                               'scrollZoom': False
                           },
+                          clickData=dict(points=[dict(pointNumber=0)]),
                           figure=FIGURE),
             ],
                      className='nine columns',
@@ -176,11 +176,11 @@ app.layout = html.Div(
 #
 
 
-def dfRowFromHover(hoverData):
+def dfRowFromHover(clickData):
     ''' Returns row for hover point as a Pandas Series '''
-    if hoverData is not None:
-        if 'points' in hoverData:
-            firstPoint = hoverData['points'][0]
+    if clickData is not None:
+        if 'points' in clickData:
+            firstPoint = clickData['points'][0]
             if 'pointNumber' in firstPoint:
                 point_number = firstPoint['pointNumber']
                 spike_name = str(
@@ -190,9 +190,9 @@ def dfRowFromHover(hoverData):
 
 
 @app.callback(Output('spike_img', 'src'),
-              [Input('clickable-graph', 'hoverData')])
-def display_image(hoverData):
-    row = dfRowFromHover(hoverData)
+              [Input('clickable-graph', 'clickData')])
+def display_image(clickData):
+    row = dfRowFromHover(clickData)
     img_src = row
     return img_src
 
