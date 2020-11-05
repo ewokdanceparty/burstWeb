@@ -169,8 +169,8 @@ app.layout = html.Div(
             html.
             P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Tapping a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
               ),
-        ], style={'position': 'relative', 'left': '40px', 'width': '800px'}),
-        dcc.Markdown(children=markdown_text, style={'position': 'relative', 'left': '40px', 'width': '800px'})
+        ], style={'position': 'relative', 'margin-left': '40px', 'margin-right': '40px'}),
+        dcc.Markdown(children=markdown_text, style={'position': 'relative', 'margin-left': '40px', 'margin-right': '40px'})
     ],
     className='container')
 
