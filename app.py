@@ -144,7 +144,7 @@ app.layout = html.Div(
                      style=dict(marginTop='100px')),
             html.Div([
                 dcc.Graph(id='clickable-graph',
-                          style=dict(width='800px', height='600px'),
+                          style=dict(width='600px', height='600px'),
                           hoverData=dict(points=[dict(pointNumber=0)]),
                           config={
                               'displayModeBar': False,
@@ -206,5 +206,5 @@ for css in external_css:
     app.css.append_css({"external_url": css})
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
-    #app.run_server(8001)
+    #app.run_server(debug=False)
+    app.run_server(8001)
