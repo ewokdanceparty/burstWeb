@@ -87,11 +87,13 @@ def scatter_plot_3d(
                   showlegend=False,
                   xaxis={
                       'type': 'log',
-                      'title': 'inter-spike interval (ms)'
+                      'title': 'inter-spike interval (ms)',
+                      'fixedrange': True
                   },
                   yaxis={
                       'type': 'linear',
-                      'title': 'extracellular spike amplitude (&mu;V)'
+                      'title': 'extracellular spike amplitude (&mu;V)',
+                      'fixedrange': True
                   },
                   scene=dict(
                       xaxis=axis_template_2d(xlabel),
