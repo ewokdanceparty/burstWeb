@@ -25,12 +25,6 @@ app.title = 'Ground truth neurotechnology'
 server = app.server
 df = pd.read_csv('bursts.csv')
 
-if 'DYNO' in os.environ:
-    app.scripts.append_script({
-        'external_url':
-        'https://cdn.rawgit.com/chriddyp/ca0d8f02a1659981a0ea7f013a378bbd/raw/e79f3f789517deec58f41251f7dbb6bee72c44ab/plotly_ga.js'
-    })
-
 BACKGROUND = 'rgb(230, 230, 230)'
 COLORSCALE = [[0, "rgb(128,128,128)"], [0.10, "rgb(255,0,0)"],
               [0.25, "rgb(0,255,0)"], [0.45, "rgb(255,0,255)"],
