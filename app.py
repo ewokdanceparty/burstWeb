@@ -33,7 +33,6 @@ COLORSCALE = [[0, "rgb(128,128,128)"], [0.10, "rgb(255,0,0)"],
 
 
 def scatter_plot_3d(
-        #hoverinfo = 'skip',
         x=df['isi'] * 1000,  #numpy.log10(df['isi']),
         y=df['amp'],
         z=df['sample'],
@@ -77,6 +76,7 @@ def scatter_plot_3d(
                  size=size,
                  color=color,
              ),
+             #hoverinfo = 'skip',
              text=pic,
              type=plot_type,
              ur=pic)
@@ -149,7 +149,7 @@ app.layout = html.Div(
                           style=dict(width='600px', height='600px'),
                           config={
                               'displayModeBar': False,
-                              'scrollZoom': False
+                              'scrollZoom': False,
                           },
                           clickData=dict(points=[dict(pointNumber=0)]),
                           figure=FIGURE),
@@ -160,13 +160,13 @@ app.layout = html.Div(
                  className='row'),
         html.Div([
             html.
-            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Mouse over the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Tap the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
               ),
             html.
             P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
               ),
             html.
-            P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Hovering over a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
+            P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Tapping a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
               ),
         ]),
         dcc.Markdown(children=markdown_text)
