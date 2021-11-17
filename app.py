@@ -12,13 +12,15 @@ capability. J Neurophysiol.
 
 import dash
 from dash.dependencies import Input, Output
-import dash_html_components as html
-import dash_core_components as dcc
+#import dash_html_components as html
+from dash import html
+#import dash_core_components as dcc
+from dash import dcc
 import pandas as pd
-import flask
+#import flask
 from flask_cors import CORS
-import os
-import numpy
+#import os
+#import numpy
 
 #app = dash.Dash('burst-firing')
 app = dash.Dash(__name__)
