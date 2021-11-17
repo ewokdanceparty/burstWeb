@@ -17,7 +17,6 @@ from dash import dcc
 import pandas as pd
 from flask_cors import CORS
 
-#app = dash.Dash('burst-firing')
 app = dash.Dash(__name__)
 app.title = 'Ground truth neurotechnology'
 server = app.server
@@ -31,7 +30,7 @@ COLORSCALE = [[0, "rgb(128,128,128)"], [0.10, "rgb(255,0,0)"],
 
 
 def scatter_plot_3d(
-        x=df['isi'] * 1000,  #numpy.log10(df['isi']),
+        x=df['isi'] * 1000,
         y=df['amp'],
         z=df['sample'],
         size=df['SIZE'],
@@ -42,7 +41,7 @@ def scatter_plot_3d(
         zlabel='sample',
         plot_type='scatter',
         markers=[]):
-    def axis_template_3d(title):  #, type='linear' ):
+    def axis_template_3d(title):
         return dict(showbackground=True,
                     backgroundcolor=BACKGROUND,
                     gridcolor='rgb(255, 255, 255)',
@@ -176,9 +175,6 @@ app.layout = html.Div(
     ],
     className='container')
 
-#
-
-
 def dfRowFromHover(clickData):
     ''' Returns row for hover point as a Pandas Series '''
     if clickData is not None:
@@ -190,7 +186,6 @@ def dfRowFromHover(clickData):
                     FIGURE['data'][0]['text'][point_number]).strip()
                 return spike_name
     return pd.Series()
-
 
 @app.callback(Output('spike_img', 'src'),
               [Input('clickable-graph', 'clickData')])
