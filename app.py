@@ -12,15 +12,10 @@ capability. J Neurophysiol.
 
 import dash
 from dash.dependencies import Input, Output
-#import dash_html_components as html
 from dash import html
-#import dash_core_components as dcc
 from dash import dcc
 import pandas as pd
-#import flask
 from flask_cors import CORS
-#import os
-#import numpy
 
 #app = dash.Dash('burst-firing')
 app = dash.Dash(__name__)
@@ -163,10 +158,13 @@ app.layout = html.Div(
                  className='row'),
         html.Div([
             html.
-            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Tap the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder or impossible to detect with an electrode placed near the neuron. Bursting is presumed to play a role in neural coding, so understanding when we can and cannot detect burst spikes with a given technology could prove to be important."
               ),
             html.
-            P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
+            P("This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, particularly in an awake animal, affording a unique opportunity to assess the limits of spike detectability with a given electrode. These recordings were enabled by the technology developed as described in the paper linked to at the bottom of the page. Tap the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+              ),
+            html.
+            P("Left: Spikes as sensed intracellularly (top; the derivative of the signal with respect to time is in the middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
               ),
             html.
             P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Tapping a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
