@@ -12,15 +12,11 @@ capability. J Neurophysiol.
 
 import dash
 from dash.dependencies import Input, Output
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 import pandas as pd
-import flask
 from flask_cors import CORS
-import os
-import numpy
 
-#app = dash.Dash('burst-firing')
 app = dash.Dash(__name__)
 app.title = 'Ground truth neurotechnology'
 server = app.server
@@ -34,7 +30,7 @@ COLORSCALE = [[0, "rgb(128,128,128)"], [0.10, "rgb(255,0,0)"],
 
 
 def scatter_plot_3d(
-        x=df['isi'] * 1000,  #numpy.log10(df['isi']),
+        x=df['isi'] * 1000,
         y=df['amp'],
         z=df['sample'],
         size=df['SIZE'],
@@ -45,7 +41,7 @@ def scatter_plot_3d(
         zlabel='sample',
         plot_type='scatter',
         markers=[]):
-    def axis_template_3d(title):  #, type='linear' ):
+    def axis_template_3d(title):
         return dict(showbackground=True,
                     backgroundcolor=BACKGROUND,
                     gridcolor='rgb(255, 255, 255)',
@@ -77,7 +73,6 @@ def scatter_plot_3d(
                  size=size,
                  color=color,
              ),
-             #hoverinfo = 'skip',
              text=pic,
              type=plot_type,
              ur=pic)
@@ -161,10 +156,16 @@ app.layout = html.Div(
                  className='row'),
         html.Div([
             html.
-            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect with an electrode placed near the neuron. This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in vivo. Such recordings are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. Tap the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+            P("Many neurons fire a sequence of spikes, known as a burst, in response to stimuli. Waveforms of later spikes within a burst may be significantly less pronounced, making them harder to detect (or perhaps impossible to detect) with an electrode placed near the neuron. Bursting is presumed to play a role in neural coding, so understanding when we can and cannot detect burst spikes with a given technology could prove to be important."
               ),
             html.
-            P("Left: Spikes as sensed intracellularly (top, with derivative of signal in middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
+            P("This is an exploration of burst spikes as electrically sensed inside (intracellularly) and outside (extracellularly) of a single neuron, in an awake animal. The relatively high-fidelity intracellular signal acts as ground truth, telling us when to look for a spike from the particular neuron in the extracellular signal. The lower-fidelity extracellular signal will often contain spikes from other neurons in the vicinity, in addition to spikes from the neuron of interest (inferring which spikes originated from which neurons is the process known as spike sorting)."
+              ),
+            html.
+            P("Such recordings are typically difficult to achieve and are rare, affording a unique opportunity to assess the limits of spike detectability with a given electrode. These recordings were enabled by the technology developed as described in the paper linked to at the bottom of the page. Tap the data points in the figure (right) to explore spikes (left) that occur at various positions within a burst."
+              ),
+            html.
+            P("Left: Spikes as sensed intracellularly (top; the derivative of the signal with respect to time is in the middle), and extracellularly (bottom; filtered for spikes). Scalebar: 20ms (horiz.), 10mV/100\u03BCV (vert., top/bottom)"
               ),
             html.
             P("Right: Extracellular spike amplitude, colored by spike number within a burst, with respect to time since the previous spike (interspike interval). Key: non-burst spike (grey), 1st spike in burst (red), 2nd (green), 3rd (magenta), 4th (yellow), 5th (blue), 6th (orange). Tapping a datapoint will show its corresponding spike (left; the particular spike will be centered in the x-axis)"
@@ -173,9 +174,6 @@ app.layout = html.Div(
         dcc.Markdown(children=markdown_text, style={'position': 'relative', 'margin-left': '40px', 'margin-right': '40px'})
     ],
     className='container')
-
-#
-
 
 def dfRowFromHover(clickData):
     ''' Returns row for hover point as a Pandas Series '''
@@ -189,7 +187,6 @@ def dfRowFromHover(clickData):
                 return spike_name
     return pd.Series()
 
-
 @app.callback(Output('spike_img', 'src'),
               [Input('clickable-graph', 'clickData')])
 def display_image(clickData):
@@ -198,5 +195,5 @@ def display_image(clickData):
     return img_src
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
-    #app.run_server(8001)
+    #app.run_server(debug=False)
+    app.run_server(8001)
