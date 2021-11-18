@@ -3,6 +3,8 @@ This is a web-based interactive visualization of burst spiking, as sensed intra-
 It uses Plotly Dash, and this code was initially based off of the "Drug Discovery Demo" from Plotly
 Dash.
 
+Use app.run_server(8001), at the bottom of this script, to run the server locally (otherwise app.run_server(8001) for running on Heroku)
+
 Paper citation: Allen, B.D., Moore-Kochlacs, C., Bernstein, J.G., Kinney, J.P., Scholvin, J., Seoane, L.F., Chronopoulos, 
 C., Lamantia, C., Kodandaramaiah, S.B., Tegmark, M., and Boyden, E.S. (2018).
 Automated in vivo patch clamp evaluation of extracellular multielectrode array spike recording
@@ -198,5 +200,5 @@ def display_image(clickData):
     return img_src
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
-    #app.run_server(8001)
+    # app.run_server(debug=False) # Run locally
+    app.run_server(8001) # Run on Heroku
